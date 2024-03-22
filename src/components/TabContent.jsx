@@ -8,7 +8,7 @@ const TabContent = ({ todos, deleteTodo, toggleComplete, activeTab }) => {
 				className={`${
 					activeTab !== 0 && "hidden"
 				} inline-block w-full all-tasks`}>
-				{todos.map((todoItem) => {
+				{todos?.map((todoItem) => {
 					const { id, todo, complete } = todoItem;
 					return (
 						<TodoItem
@@ -26,7 +26,7 @@ const TabContent = ({ todos, deleteTodo, toggleComplete, activeTab }) => {
 				className={`${
 					activeTab !== 1 && "hidden"
 				} inline-block w-full active-tasks`}>
-				{todos.map((todoItem) => {
+				{todos?.map((todoItem) => {
 					const { id, todo, complete } = todoItem;
 					if (todoItem.complete === false) {
 						return (
@@ -46,7 +46,7 @@ const TabContent = ({ todos, deleteTodo, toggleComplete, activeTab }) => {
 				className={`${
 					activeTab !== 2 && "hidden"
 				} inline-block w-full completed-tasks`}>
-				{todos.map((todoItem) => {
+				{todos?.map((todoItem) => {
 					const { id, todo, complete } = todoItem;
 					if (todoItem.complete !== false) {
 						return (

@@ -9,7 +9,11 @@ const TodoInfo = ({ todos, completedTasks, deleteTodo, toggleComplete }) => {
 			<div className="flex gap-8 mb-4">
 				<div className="data-card">
 					<h5 className="font-bold text-xl">
-						{todos.length < 10 ? `0${todos.length}` : todos.length}
+						{todos?.length < 10
+							? `0${todos?.length}`
+							: todos?.length
+							? todos?.length
+							: "00"}
 					</h5>
 					<p>Created tasks</p>
 				</div>
@@ -20,15 +24,17 @@ const TodoInfo = ({ todos, completedTasks, deleteTodo, toggleComplete }) => {
 					<p>Completed tasks</p>
 				</div>
 			</div>
-			<div className="inline-block w-full">
-				<TabButtons activeTab={activeTab} setActiveTab={setActiveTab} />
-				<TabContent
-					todos={todos}
-					activeTab={activeTab}
-					deleteTodo={deleteTodo}
-					toggleComplete={toggleComplete}
-				/>
-			</div>
+			{todos?.length > 0 && (
+				<div className="inline-block w-full">
+					<TabButtons activeTab={activeTab} setActiveTab={setActiveTab} />
+					<TabContent
+						todos={todos}
+						activeTab={activeTab}
+						deleteTodo={deleteTodo}
+						toggleComplete={toggleComplete}
+					/>
+				</div>
+			)}
 		</>
 	);
 };

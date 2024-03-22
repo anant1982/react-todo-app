@@ -4,12 +4,10 @@ import TodoInfo from "./TodoInfo";
 
 const TodoList = () => {
 	const storedTodos = JSON.parse(localStorage.getItem("todos"));
-	const [todos, setTodos] = useState(storedTodos);
+	const [todos, setTodos] = useState(storedTodos === null ? [] : storedTodos);
 	const [todoItem, setTodoItem] = useState("");
 	const [error, setError] = useState(false);
 	const [completedTasksCount, setCompletedTasksCount] = useState("");
-	const [completedTasks, setCompletedTasks] = useState([]);
-	const [activeTasks, setActiveTasks] = useState([]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -46,15 +44,8 @@ const TodoList = () => {
 
 	useEffect(() => {
 		let completeArray = [];
-		todos.filter((todo) => todo.complete === true && completeArray.push(todo));
+		todos?.filter((todo) => todo.complete === true && completeArray.push(todo));
 		setCompletedTasksCount(completeArray.length);
-		setCompletedTasks(completeArray);
-
-		let activeTasksArray = [];
-		todos.filter(
-			(todo) => todo.complete === false && activeTasksArray.push(todo)
-		);
-		setActiveTasks(activeTasksArray);
 	}, [todos]);
 
 	useEffect(() => {
